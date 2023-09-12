@@ -45,6 +45,9 @@ $ npm run start:dev
 $ npm run start:prod
 ```
 
+## Documentation
+Check out the documentation <a href="https://github.com/destinyayomah/hng-backend-stage2/blob/main/DOCUMENTATION.md">here</a>.
+
 ## Test
 
 ```bash
