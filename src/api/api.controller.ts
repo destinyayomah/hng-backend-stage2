@@ -15,7 +15,7 @@ export class ApiController {
 
     @Get(':id')
     @HttpCode(HttpStatus.OK)
-    async getAPerson(@Param('id') id: string) {
+    async getPerson(@Param('id') id: string): Promise<Object> {
         return await this.apiService.get(id);
     }
 
@@ -28,7 +28,7 @@ export class ApiController {
 
     @Delete(':id')
     @HttpCode(HttpStatus.OK)
-    async deletePerson(@Param('id') id: string) {
+    async deletePerson(@Param('id') id: string): Promise<Object> {
         await this.apiService.delete(id);
         return { statusCode: HttpStatus.OK, message: 'Person Deleted' };
     }

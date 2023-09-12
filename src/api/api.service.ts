@@ -15,18 +15,20 @@ export class ApiService {
         @InjectModel('Person') private readonly personModel: Model<PersonDto>
     ) { }
 
-    async create(dto: CreatePersonDto) {
+    async create(dto: CreatePersonDto): Promise<Object> {
         try {
             if (!dto.name) {
-                throw new HttpException('name is required', HttpStatus.BAD_REQUEST);
+                throw new HttpException('name is required', HttpStatus.UNPROCESSABLE_ENTITY);
             }
+
+            if(typeof dto.name !== 'string') throw new HttpException('name must be a string', HttpStatus.UNPROCESSABLE_ENTITY);
 
             const personExists = await this.personModel
                 .findOne({ name: dto.name })
                 .exec();
 
             if (personExists) {
-                throw new HttpException('Person already exists', HttpStatus.BAD_REQUEST);
+                throw new HttpException('Person already exists', HttpStatus.CONFLICT);
             }
 
             const newPerson = new this.personModel({
