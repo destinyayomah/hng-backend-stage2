@@ -153,7 +153,7 @@ Content-Type: application/json
 **Sample Request:**
 
 ```http
-GET /id
+DELETE /id
 ```
 
 **Response:**
@@ -172,3 +172,27 @@ Content-Type: application/json
     "message": "Person Deleted"
 }
 ```
+
+## Known Limitations and Assumptions
+- This API assumes that the client provides valid input data.
+- The API currently only supports URL_ENCODED and JSON as the data input format.
+- All outputs are in JSON format.
+
+## Setup and Deployment
+
+### Local Development
+
+1. Clone the repository: git clone https://github.com/destinyayomah/hng-backend-stage2.git
+2. Install dependencies: npm install
+3. Configure environment variables: Create a .env file with the **`MONGO_URL=`** configuration.
+4. Start the development server: npm run start:dev
+5. Visit localhost:3000/api to access the api
+
+### Deployment
+
+1. Choose a hosting provider (e.g., Render, Railway, Cyclic, or your preferred platform).
+2. Set up the necessary environment variables on the hosting platform like **`MONGO_URL`**. If you are making use of render you would need to also add the **`NODE_VERSION`** environment varaible with a value of **`18.6.0`**, so it can be picked up as the node version for running the project.
+3. Deploy your NestJS application following the platform-specific deployment instructions.
+
+## Conclusion
+Thank you for using the hng-backend-stage2 API. If you have any questions or need assistance, please feel free to contact me.
