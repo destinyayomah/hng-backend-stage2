@@ -196,3 +196,8 @@ Content-Type: application/json
 
 ## Conclusion
 Thank you for using the hng-backend-stage2 API. If you have any questions or need assistance, please feel free to contact me.
+
+## Stay in touch
+- Author - <a href="https://github.com/destinyayomah">Destiny Ayomah</a>
+- LinkedIn - <a href="https://www.linkedin.com/in/destiny-ayomah-822286197">Destiny Ayomah</a>
+- Twitter - <a href="https://twitter.com/destiny_ayomah?t=57a60xIgFqu4TaLqDhRStQ&s=09">@destinyayomah</a>
