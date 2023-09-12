@@ -1,7 +1,7 @@
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
-import { CatchExceptionHandler, CustomHttpException } from 'src/lib';
+import { CatchExceptionHandler, CustomHttpException, StringEmpty } from 'src/lib';
 import { PersonDto } from 'src/person/dto';
 import { CreatePersonDto } from './dto';
 import * as dotenv from 'dotenv';
@@ -15,7 +15,7 @@ export class ApiService {
         @InjectModel('Person') private readonly personModel: Model<PersonDto>
     ) { }
 
-    async create(dto: CreatePersonDto): Promise<Number> {
+    async create(dto: CreatePersonDto) {
         try {
             if (!dto.name) {
                 throw new HttpException('name is required', HttpStatus.BAD_REQUEST);
@@ -29,33 +29,35 @@ export class ApiService {
                 throw new HttpException('Person already exists', HttpStatus.BAD_REQUEST);
             }
 
-            const existingDocumentsCount = await this.personModel.countDocuments({});
-            const nextIndex = existingDocumentsCount + 1;
-
             const newPerson = new this.personModel({
-                id: nextIndex,
                 name: dto.name
             });
 
             const person = await newPerson.save();
 
-            return person.id;
+            return person._id;
         } catch (error) {
             CatchExceptionHandler(error);
         }
     }
 
-    async get(id: number): Promise<PersonDto> {
+    async get(_id: string): Promise<PersonDto> {
         try {
-            if (isNaN(id)) {
+            if (StringEmpty(_id))
                 CustomHttpException(
                     HttpStatus.BAD_REQUEST,
-                    'invalid id',
+                    'id should not be empty',
                     'BAD_REQUEST',
                 );
-            }
 
-            const person = await this.personModel.findOne({ id }, 'id name -_id').exec();
+            if (!_id.match(/^[0-9a-fA-F]{24}$/))
+                CustomHttpException(
+                    HttpStatus.UNPROCESSABLE_ENTITY,
+                    'invalid id',
+                    'UNPROCESSABLE_ENTITY',
+                );
+
+            const person = await this.personModel.findOne({ _id }, '_id name').exec();
 
             if (!person) {
                 CustomHttpException(
@@ -71,17 +73,23 @@ export class ApiService {
         }
     }
 
-    async update(id: number, dto: CreatePersonDto): Promise<PersonDto> {
+    async update(_id: string, dto: CreatePersonDto): Promise<PersonDto> {
         try {
-            if (isNaN(id)) {
+            if (StringEmpty(_id))
                 CustomHttpException(
                     HttpStatus.BAD_REQUEST,
-                    'invalid id',
+                    'id should not be empty',
                     'BAD_REQUEST',
                 );
-            }
 
-            const person = await this.personModel.findOne({ id }, 'id name -_id').exec();
+            if (!_id.match(/^[0-9a-fA-F]{24}$/))
+                CustomHttpException(
+                    HttpStatus.UNPROCESSABLE_ENTITY,
+                    'invalid id',
+                    'UNPROCESSABLE_ENTITY',
+                );
+
+            const person = await this.personModel.findOne({ _id }, '_id name').exec();
 
             if (!person) {
                 CustomHttpException(
@@ -109,8 +117,8 @@ export class ApiService {
                 );
             }
 
-            const personData = await this.personModel.findOneAndUpdate({ id }, { $set: dto }, { new: true })
-                .select('id name -_id')
+            const personData = await this.personModel.findOneAndUpdate({ _id }, { $set: dto }, { new: true })
+                .select('_id name')
                 .exec();
 
             return personData;
@@ -119,17 +127,23 @@ export class ApiService {
         }
     }
 
-    async delete(id: number) {
+    async delete(_id: string) {
         try {
-            if (isNaN(id)) {
+            if (StringEmpty(_id))
                 CustomHttpException(
                     HttpStatus.BAD_REQUEST,
-                    'invalid id',
+                    'id should not be empty',
                     'BAD_REQUEST',
                 );
-            }
 
-            const person = await this.personModel.findOne({ id }, 'id name -_id').exec();
+            if (!_id.match(/^[0-9a-fA-F]{24}$/))
+                CustomHttpException(
+                    HttpStatus.UNPROCESSABLE_ENTITY,
+                    'invalid id',
+                    'UNPROCESSABLE_ENTITY',
+                );
+
+            const person = await this.personModel.findOne({ _id }, '_id name').exec();
 
             if (!person) {
                 CustomHttpException(
@@ -139,7 +153,7 @@ export class ApiService {
                 );
             }
 
-            await this.personModel.deleteOne({ id }).exec();
+            await this.personModel.deleteOne({ _id }).exec();
         } catch (error) {
             CatchExceptionHandler(error);
         }

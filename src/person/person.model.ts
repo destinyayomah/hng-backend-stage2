@@ -1,13 +1,10 @@
 import * as mongoose from 'mongoose';
 
 export const personSchema = new mongoose.Schema({
-    id: {
-        type: Number,
-        required: [true, 'Id is required'],
-        unique: true
-    },
     name: {
         type: String,
+        trim: true,
+        minLength: 3,
         required: [true, "Name is required"]
     }
 }, { timestamps: true });

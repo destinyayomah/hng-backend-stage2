@@ -9,26 +9,26 @@ export class ApiController {
     @Post()
     @HttpCode(HttpStatus.CREATED)
     async createPerson(@Body() dto: CreatePersonDto): Promise<Object> {
-        const id = await this.apiService.create(dto);
-        return { statusCode: HttpStatus.CREATED, id, message: 'Person Created' };
+        const id = await this.apiService.create(dto); 
+        return { statusCode: HttpStatus.CREATED, _id: id, message: 'Person Created' };
     }
 
     @Get(':id')
     @HttpCode(HttpStatus.OK)
-    async getAPerson(@Param('id') id: number) {
+    async getAPerson(@Param('id') id: string) {
         return await this.apiService.get(id);
     }
 
     @Patch(':id')
     @HttpCode(HttpStatus.OK)
-    async updatePerson(@Param('id') id: number, @Body() dto: CreatePersonDto): Promise<Object> {
+    async updatePerson(@Param('id') id: string, @Body() dto: CreatePersonDto): Promise<Object> {
         const response = await this.apiService.update(id, dto);
         return {statusCode: HttpStatus.OK, message: 'Person Updated', data: response};
     }
 
     @Delete(':id')
     @HttpCode(HttpStatus.OK)
-    async deletePerson(@Param('id') id: number) {
+    async deletePerson(@Param('id') id: string) {
         await this.apiService.delete(id);
         return { statusCode: HttpStatus.OK, message: 'Person Deleted' };
     }
