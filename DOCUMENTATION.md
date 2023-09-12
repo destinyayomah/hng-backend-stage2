@@ -30,6 +30,7 @@ This API doesn't require any authentication.
 
 ```http
 GET /id
+```
 
 **Response:**
 - **Status Code:** **`201 CREATED on success`**, **`422 UNPROCESSABLE_ENTITY on invalid input`**, **`409 CONFLICT on person already exists`**
@@ -42,11 +43,13 @@ GET /id
 {
   "name": "John Doe"
 }
+```
 
-Sample Response:
-```json
+**Sample Response:**
+```shell
 {
     "statusCode": 201,
     "_id": "65003f6d41cde5cef4f66c6e",
     "message": "Person Created"
 }
+```
