@@ -194,10 +194,15 @@ Content-Type: application/json
 2. Set up the necessary environment variables on the hosting platform like **`MONGO_URL`**. If you are making use of render you would need to also add the **`NODE_VERSION`** environment varaible with a value of **`18.6.0`**, so it can be picked up as the node version for running the project.
 3. Deploy your NestJS application following the platform-specific deployment instructions.
 
+### Test Scripts
+
+You can also run tests of this api by visiting the postman workspace <a href="https://www.postman.com/dkeystack/workspace/hngx/folder/9621389-7741cdcb-16c0-4749-9322-6bb278b2e49b?ctx=documentation">here</a>.
+
 ## Conclusion
 Thank you for using the hng-backend-stage2 API. If you have any questions or need assistance, please feel free to contact me.
 
 ## Stay in touch
+
 - Author - <a href="https://github.com/destinyayomah">Destiny Ayomah</a>
 - LinkedIn - <a href="https://www.linkedin.com/in/destiny-ayomah-822286197">Destiny Ayomah</a>
 - Twitter - <a href="https://twitter.com/destiny_ayomah?t=57a60xIgFqu4TaLqDhRStQ&s=09">@destinyayomah</a>

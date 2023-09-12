@@ -59,7 +59,12 @@ $ npm run test:cov
 ```
 
 ## Documentation
+
 Check out the documentation <a href="https://github.com/destinyayomah/hng-backend-stage2/blob/main/DOCUMENTATION.md">here</a>.
+
+### Test Scripts
+
+You can also run tests of this api by visiting the postman workspace <a href="https://www.postman.com/dkeystack/workspace/hngx/folder/9621389-7741cdcb-16c0-4749-9322-6bb278b2e49b?ctx=documentation">here</a>.
 
 ## Support
 
