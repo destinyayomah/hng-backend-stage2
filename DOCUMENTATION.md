@@ -2,7 +2,7 @@
 
 ## Introduction
 
-This documentation outlines the usage and specifications of the [Your API Name] built with NestJS.
+This documentation outlines the usage and specifications of the hng-backend-stage2 API built with NestJS.
 
 ## API Base URL
 
@@ -14,7 +14,7 @@ This API doesn't require any authentication.
 
 ## Endpoints
 
-### `GET /endpoint`
+### `GET /id`
 
 **Description:** Fetching details of a person.
 
@@ -30,3 +30,23 @@ This API doesn't require any authentication.
 
 ```http
 GET /id
+
+**Response:**
+- **Status Code:** **`201 CREATED on success`**, **`422 UNPROCESSABLE_ENTITY on invalid input`**, **`409 CONFLICT on person already exists`**
+
+**Headers:**
+    - `Content-Type:` application/json
+
+**Body (JSON):**
+```shell
+{
+  "name": "John Doe"
+}
+
+Sample Response:
+```json
+{
+    "statusCode": 201,
+    "_id": "65003f6d41cde5cef4f66c6e",
+    "message": "Person Created"
+}
