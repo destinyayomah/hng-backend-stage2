@@ -33,10 +33,10 @@ GET /id
 ```
 
 **Response:**
-- **Status Code:** **`200 OK on success`**, **`422 UNPROCESSABLE_ENTITY on invalid id`**, **`404 NOT_FOUND on person not found`**
+- **Status Code:** **`200`** OK on success, **`422 UNPROCESSABLE_ENTITY`** on invalid id, **`404 NOT_FOUND`** on person not found
 
 **Headers:**
-    - `Content-Type:` application/json
+- `Content-Type:` application/json
 
 **Sample Response:**
 ```http
@@ -68,7 +68,7 @@ POST /
 ```
 
 **Response:**
-- **Status Code:** **`201 CREATED on success`**, **`422 UNPROCESSABLE_ENTITY on invalid input`**, **`409 CONFLICT on person already exists`**
+- **Status Code:** **`201 CREATED`** on success, **`422 UNPROCESSABLE_ENTITY`** on invalid input, **`409 CONFLICT`** on person already exists
 
 **Headers:**
     - `Content-Type:` application/json
@@ -111,7 +111,7 @@ PATCH /id
 ```
 
 **Response:**
-- **Status Code:** **`200 OK on success`**, **`422 UNPROCESSABLE_ENTITY on invalid input`**, **`404 NOT_FOUND on person not found`**, **`409 CONFLICT on person already exists`**
+- **Status Code:** **`200 OK`** on success, **`422 UNPROCESSABLE_ENTITY`** on invalid input, **`404 NOT_FOUND`** on person not found, **`409 CONFLICT`** on person already exists
 
 **Headers:**
     - `Content-Type:` application/json
@@ -157,7 +157,7 @@ GET /id
 ```
 
 **Response:**
-- **Status Code:** **`200 OK on success`**, **`422 UNPROCESSABLE_ENTITY on invalid id`**, **`404 NOT_FOUND on person not found`**
+- **Status Code:** **`200 OK`** on success, **`422 UNPROCESSABLE_ENTITY`** on invalid id, **`404 NOT_FOUND`** on person not found
 
 **Headers:**
     - `Content-Type:` application/json
